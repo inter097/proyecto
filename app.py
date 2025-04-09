@@ -6,6 +6,14 @@ import streamlit as st
 from collections import defaultdict
 from PIL import Image
 import os
+import subprocess
+import sys
+# Verifica si el modelo ya está cargado; si falla, lo descarga
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    subprocess.run([sys.executable, "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
 
 importante = 0
 # Cargar modelo de SpaCy
