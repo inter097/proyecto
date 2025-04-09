@@ -8,14 +8,15 @@ from PIL import Image
 import os
 import subprocess
 import sys
-# Verifica si el modelo ya está cargado; si falla, lo descarga
+
+# Intentar cargar el modelo
 try:
     nlp = spacy.load("en_core_web_sm")
 except OSError:
-    subprocess.run([sys.executable, "-m", "spacy", "download", "en_core_web_sm"])
+    # Si falla, descargarlo desde GitHub
+    subprocess.run([sys.executable, "-m", "pip", "install", "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl"])
     nlp = spacy.load("en_core_web_sm")
 
-importante = 0
 # Cargar modelo de SpaCy
 nlp = spacy.load("en_core_web_sm")
 
