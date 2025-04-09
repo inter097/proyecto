@@ -10,18 +10,18 @@ import subprocess
 import sys
 # Definir la ruta local del modelo
 model_path = os.path.join(os.getcwd(), "spacy_model", "en_core_web_sm")
+nlp = spacy.load(model_path)
 
-# Intentar cargar el modelo desde la carpeta local
-try:
-    nlp = spacy.load(model_path)
-except OSError:
-    # Si falla, puedes intentar descargar el modelo (aunque no debería ser necesario si ya tienes el modelo)
-    subprocess.run([sys.executable, "-m", "spacy", "download", "en_core_web_sm"])
-    nlp = spacy.load(model_path)
+# # Intentar cargar el modelo desde la carpeta local
+# try:
+#     nlp = spacy.load(model_path)
+# except OSError:
+#     # Si falla, puedes intentar descargar el modelo (aunque no debería ser necesario si ya tienes el modelo)
+#     subprocess.run([sys.executable, "-m", "spacy", "download", "en_core_web_sm"])
+#     nlp = spacy.load(model_path)
 
 # Cargar modelo de SpaCy
 # nlp = spacy.load("en_core_web_sm") 
-
 
 custom_stopwords = {"and", "or", "but", "the", "a", "an", "are", "is", "was", "were", "be", "being", "been"}
 
